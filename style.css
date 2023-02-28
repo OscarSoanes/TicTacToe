@@ -2,6 +2,9 @@
 
 :root {
     font-family: Archivo, sans-serif;
+    --container: #0d1b2a;
+    --body: #1b263b;
+    --text: #e0e1dd;
 }
 
 html, body {
@@ -13,4 +16,19 @@ html, body {
     grid-template-rows: min-content 1fr, min-content;
     height: 100%;
     text-align: center;
+    color: var(--text);
+}
+
+header {
+    background-color: var(--container);
+    font-size: 8rem;
+    padding: 4rem 0 2rem 0rem;
+}
+
+main {
+    background-color: var(--body);
+}
+
+footer {
+    background-color: var(--container);
 }
