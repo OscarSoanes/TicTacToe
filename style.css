@@ -64,6 +64,10 @@ main > p {
     border-radius: 1rem;
 }
 
+.cell:hover, img:hover, button:hover {
+    opacity: 80%;
+}
+
 #restart {
     width: 200px;
     height: 3rem;
