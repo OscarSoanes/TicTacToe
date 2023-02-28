@@ -30,13 +30,15 @@ main {
 }
 
 footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--container);
-}
-
-footer > p {
-    display: inline;
+    font-size: 1.25rem;
+    padding: 1rem;
 }
 
 footer > a > img {
+    padding-left: 1rem;
     width: 32px;
 }
