@@ -5,6 +5,7 @@
     --container: #0d1b2a;
     --body: #1b263b;
     --text: #e0e1dd;
+    --stand-out: #ff6b35;
 }
 
 html, body {
@@ -21,18 +22,50 @@ html, body {
 
 header {
     background-color: var(--container);
-    font-size: 8rem;
-    padding: 4rem 0 2rem 0rem;
+    font-size: 6rem;
+    padding: 2rem 0 2rem 0rem;
 }
 
 main {
     background-color: var(--body);
 }
 
+main > p {
+    font-size: 3rem;
+    margin: 2rem 0;
+}
+
+#message > #turn {
+    color: var(--stand-out);
+    font-family: 700;
+}
+
+#game-container {
+    /* todo */
+    background-color: var(--container);
+}
+
+.cell {
+    background-color: var(--text);
+}
+
+#restart {
+    width: 200px;
+    height: 3rem;
+    border-radius: 2rem;
+    border: 0;
+
+    background-color: var(--stand-out);
+    color: var(--text);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
 footer {
     display: flex;
     justify-content: center;
     align-items: center;
+
     background-color: var(--container);
     font-size: 1.25rem;
     padding: 1rem;
