@@ -13,7 +13,7 @@ html, body {
 
 .grid-container {
     display: grid;
-    grid-template-rows: min-content 1fr, min-content;
+    grid-template-rows: min-content 1fr min-content;
     height: 100%;
     text-align: center;
     color: var(--text);
@@ -31,4 +31,12 @@ main {
 
 footer {
     background-color: var(--container);
+}
+
+footer > p {
+    display: inline;
+}
+
+footer > a > img {
+    width: 32px;
 }
