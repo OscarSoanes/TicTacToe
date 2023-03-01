@@ -16,7 +16,7 @@ const gameBoard = (() => {
       [0, 3, 6],
       [1, 4, 7],
       [2, 5, 8],
-      [0, 4, 6],
+      [0, 4, 8],
       [2, 4, 6],
     ];
 
@@ -86,7 +86,9 @@ const game = (() => {
   const player1 = player("x");
   const player2 = player("o");
   let currentPlayer = player1;
+  let result = undefined;
   const span = document.querySelector("#turn");
+  const message = document.querySelector("#message");
 
   const startGame = () => {
     gameBoard.reset();
@@ -102,16 +104,25 @@ const game = (() => {
   };
 
   const move = (index) => {
-    let result = gameBoard.move(currentPlayer.name, index);
+    if (result === "won" || result === "full") {
+      return;
+    }
 
-    // validation
+    result = gameBoard.move(currentPlayer.name, index);
+
     if (result === "error") return;
+    if (result === "won") {
+      message.textContent = `Player ${currentPlayer.name} won!`;
+    }
+    if (result === "full") {
+      message.textContent = "It's a draw!";
+    }
 
     switchPlayer();
     span.textContent = currentPlayer.name;
   };
 
-  return {startGame, switchPlayer, move, currentPlayer};
+  return {startGame, switchPlayer, move, currentPlayer, result};
 })();
 
 game.startGame();
