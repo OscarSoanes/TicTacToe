@@ -3,11 +3,42 @@ const gameBoard = (() => {
   const move = (player, position) => {
     gameBoard[position] = player;
     displayController(gameBoard);
+    result(player);
   };
 
   const reset = () => {
     gameBoard = ["", "", "", "", "", "", "", "", ""];
     displayController(gameBoard);
+  };
+
+  const result = (player) => {
+    const isFull = !gameBoard.includes("");
+
+    const winningCombos = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 6],
+      [2, 4, 6],
+    ];
+
+    for (const key in winningCombos) {
+      console.log(winningCombos[key][0]);
+      if (
+        gameBoard[winningCombos[key][0]] === player &&
+        gameBoard[winningCombos[key][1]] === player &&
+        gameBoard[winningCombos[key][2]] === player
+      ) {
+        return "won";
+      }
+    }
+
+    if (isFull) {
+      return "full";
+    }
   };
 
   return {move, reset};
