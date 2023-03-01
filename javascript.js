@@ -51,9 +51,10 @@ const game = (() => {
   const player1 = player("x");
   const player2 = player("o");
   let currentPlayer = player1;
+  const span = document.querySelector("#turn");
 
   const startGame = () => {
-    gameBoard.move("", 0);
+    gameBoard.reset();
     span.textContent = currentPlayer.name;
   };
 
@@ -75,3 +76,8 @@ const game = (() => {
 })();
 
 game.startGame();
+
+const restart = document.querySelector("#restart");
+restart.addEventListener("click", () => {
+  game.startGame();
+});
