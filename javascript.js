@@ -1,10 +1,5 @@
 const gameBoard = (() => {
   let gameBoard = ["", "", "", "", "", "", "", "", ""];
-  const move = (player, position) => {
-    gameBoard[position] = player;
-    displayController(gameBoard);
-    result(player);
-  };
 
   const reset = () => {
     gameBoard = ["", "", "", "", "", "", "", "", ""];
@@ -26,7 +21,6 @@ const gameBoard = (() => {
     ];
 
     for (const key in winningCombos) {
-      console.log(winningCombos[key][0]);
       if (
         gameBoard[winningCombos[key][0]] === player &&
         gameBoard[winningCombos[key][1]] === player &&
@@ -39,6 +33,16 @@ const gameBoard = (() => {
     if (isFull) {
       return "full";
     }
+  };
+
+  const move = (player, position) => {
+    if (gameBoard[position] === "") {
+      gameBoard[position] = player;
+      displayController(gameBoard);
+      let res = result(player);
+      return res;
+    }
+    return "error";
   };
 
   return {move, reset};
@@ -98,7 +102,11 @@ const game = (() => {
   };
 
   const move = (index) => {
-    gameBoard.move(currentPlayer.name, index);
+    let result = gameBoard.move(currentPlayer.name, index);
+
+    // validation
+    if (result === "error") return;
+
     switchPlayer();
     span.textContent = currentPlayer.name;
   };
