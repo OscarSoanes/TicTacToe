@@ -87,12 +87,32 @@ const game = (() => {
   const player2 = player("o");
   let currentPlayer = player1;
   let result = undefined;
-  const span = document.querySelector("#turn");
+  let span;
   const message = document.querySelector("#message");
 
   const startGame = () => {
+    const empty = (parent) => {
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+    };
+
     gameBoard.reset();
-    span.textContent = currentPlayer.name;
+    currentPlayer = player1;
+    result = undefined;
+
+    empty(message);
+    message.appendChild(document.createTextNode("Player "));
+
+    let spanEl = document.createElement("span");
+
+    spanEl.setAttribute("id", "turn");
+    spanEl.textContent = currentPlayer.name;
+    message.appendChild(spanEl);
+
+    message.appendChild(document.createTextNode("'s turn"));
+
+    span = document.querySelector("#turn");
   };
 
   const switchPlayer = () => {
