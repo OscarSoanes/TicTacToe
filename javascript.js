@@ -14,11 +14,18 @@ const gameBoard = (() => {
 })();
 
 const displayController = (gameBoard, turn) => {
+  // clears a parent container
+  const empty = (parent) => {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  };
+
   const container = document.querySelector("#game-container");
+  empty(container);
 
   let index = 0;
   gameBoard.forEach((move) => {
-    console.log(`${index} & ${move}`);
     const cell = document.createElement("div");
     cell.classList.add("cell");
     cell.textContent = move;
@@ -27,6 +34,13 @@ const displayController = (gameBoard, turn) => {
     container.appendChild(cell);
     index++;
   });
+
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach((cell) =>
+    cell.addEventListener("click", () => {
+      game.move(cell.getAttribute("index"));
+    })
+  );
 };
 
 const game = (() => {
@@ -59,12 +73,3 @@ const game = (() => {
 })();
 
 game.startGame();
-
-const cells = document.querySelectorAll(".cell");
-
-cells.forEach((cell) =>
-  cell.addEventListener("click", () => {
-    console.log("hi");
-    game.move(cell.getAttribute("index"));
-  })
-);
