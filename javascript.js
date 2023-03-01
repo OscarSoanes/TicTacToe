@@ -54,6 +54,7 @@ const game = (() => {
 
   const startGame = () => {
     gameBoard.move("", 0);
+    span.textContent = currentPlayer.name;
   };
 
   const switchPlayer = () => {
@@ -67,9 +68,10 @@ const game = (() => {
   const move = (index) => {
     gameBoard.move(currentPlayer.name, index);
     switchPlayer();
+    span.textContent = currentPlayer.name;
   };
 
-  return {startGame, switchPlayer, move};
+  return {startGame, switchPlayer, move, currentPlayer};
 })();
 
 game.startGame();
