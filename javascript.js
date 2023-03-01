@@ -15,10 +15,10 @@ const gameBoard = (() => {
 
 const displayController = (gameBoard, turn) => {
   const container = document.querySelector("#game-container");
-  container.innerHTML = "";
 
   let index = 0;
   gameBoard.forEach((move) => {
+    console.log(`${index} & ${move}`);
     const cell = document.createElement("div");
     cell.classList.add("cell");
     cell.textContent = move;
@@ -33,29 +33,38 @@ const game = (() => {
   const player = (name) => {
     return {name};
   };
+
   const player1 = player("x");
   const player2 = player("o");
-
   let currentPlayer = player1;
-
-  const switchPlayer = () => {
-    if (currentPlayer === player1) {
-      console.log("true");
-      currentPlayer = player2;
-    } else {
-      console.log("false");
-      currentPlayer = player1;
-    }
-  };
 
   const startGame = () => {
     gameBoard.move("", 0);
   };
-  return {startGame, player1, player2, switchPlayer, currentPlayer};
+
+  const switchPlayer = () => {
+    if (currentPlayer === player1) {
+      currentPlayer = player2;
+    } else {
+      currentPlayer = player1;
+    }
+  };
+
+  const move = (index) => {
+    gameBoard.move(currentPlayer.name, index);
+    switchPlayer();
+  };
+
+  return {startGame, switchPlayer, move};
 })();
 
 game.startGame();
 
-// todo
-// const cells = document.querySelectorAll(".cell");
-// cells.forEach((cell) => cell.addEventListener("click", () => {}));
+const cells = document.querySelectorAll(".cell");
+
+cells.forEach((cell) =>
+  cell.addEventListener("click", () => {
+    console.log("hi");
+    game.move(cell.getAttribute("index"));
+  })
+);
